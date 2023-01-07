@@ -46,11 +46,6 @@ function NameFormat(arr){
         var tempObj={};
         temp[key]=tempObj;
 
-        for (let index = 0; index < arr.length; index++) {
-            
-            
-            
-        }
         var concName=arr[key].firstName.concat(' ',arr[key].lastName);
         tempObj.fullName=concName;
         // console.log(tempObj.fullName);
@@ -82,10 +77,9 @@ function NameFormat(arr){
                     break;
                 case 4:
                     testNo=parseInt(reversedAddress[index])
-                    if (! testNo.isNaN) {
+                    console.log()
+                    if (! isNaN(testNo) ) {
                         tempObj.buildingNumber=testNo;
-                    }else{
-                        tempObj.buildingNumber=undefined;
                     }
                     break;   
 
