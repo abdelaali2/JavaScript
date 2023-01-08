@@ -48,14 +48,13 @@ var Users = [
 
 
 // Write the implementation of reducerFunc.
-var ageArr=[];
+
 function reducerFunc(sum) {
     var i=0;
     sum=0;
     for (let index = 0; index < Users.length; index++) {
 
         if (Users[index].age<40) {
-            ageArr[i]=Users[index].age;
             sum+=Users[index].age;
             i++;
         }
