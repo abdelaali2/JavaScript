@@ -5,7 +5,7 @@
 */
 
 
-var formattedUsers = [
+var Users = [
     {
         fullName: 'Ahmed Ali',
         age: 27,
@@ -48,21 +48,24 @@ var formattedUsers = [
 
 
 // Write the implementation of reducerFunc.
-function reducerFunc() {
+var ageArr=[];
+function reducerFunc(sum) {
+    var i=0;
+    sum=0;
+    for (let index = 0; index < Users.length; index++) {
 
-    var ageArr;
-    for (let index = 0; index < formattedUsers.length; index++) {
-        
-        if (formattedUsers[index].age<40) {
-            // ageArr[index] = formattedUsers[index].age;
-            console.log(index+' '+formattedUsers[index].age)
+        if (Users[index].age<40) {
+            ageArr[i]=Users[index].age;
+            sum+=Users[index].age;
+            i++;
         }
     }
-
-
+    return sum/i;
 }
 
-var average = formattedUsers.reduce(reducerFunc);
+var average = Users.reduce(reducerFunc);
+// var average = Users.reduce((sum,start) => sum+=start/ageArr.length,0);
+console.log(average)
 
 /*
   2. Calculate the number of occurrences of all characters including numbers and white 
@@ -73,7 +76,42 @@ var average = formattedUsers.reduce(reducerFunc);
 */
 
 // Example input
-var input = 'abbflmffchocC19 ieqvh';
+const input = 'abbflmffchocC19 ieqvh';
+let modified=input.toLocaleLowerCase();
+
+var count=0;
+[...modified].forEach(letterCounter);
+
+function letterCounter(letter,i,arr){
+
+    count=0;
+
+    for (let index = 0; index < arr.length; index++) {
+        
+        if (arr[index]===letter)
+        {
+            if (letter===' ') {letter='White space'}
+            count++;
+        }
+    }
+    
+    switch (count) {
+
+        case 1:
+            console.log(`${letter} occurred once.`)
+            break;
+            
+        case 2:    
+            console.log(`${letter} occurred twice.`)
+            break;
+            
+        default:
+            console.log(`${letter} occurred ${count} times.`)
+            break;
+    }
+
+}
+
 
 /* Output should be exactly like this in the console.
     1 ocurred once
