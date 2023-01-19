@@ -74,7 +74,7 @@ function Animal_ES5(color, weight) {
   this.color = color;
   this.weight = weight;
   // Keep track of total created animals
-  if (Animal_ES5.count === 100) {
+  if (Animal_ES5.count >= 100) {
     throw new Error('Cannot create more than 100 animals');
   } else {
     Animal_ES5.count++;
@@ -89,7 +89,7 @@ function Animal_ES5(color, weight) {
 }
 
 // Keep track of total created animals (static property)  
-Animal_ES5.count = 0;
+Animal_ES5.count = 0; //Animal_ES5.prototype
 
 // Bird constructor - inherits from Animal constructor  
 function Bird_ES5 (color, weight) {
@@ -113,16 +113,12 @@ console.log(cat1);
 
 //ES6:  
 class Animal_ES6 {
-  
   constructor(color, weight) {
-    
     this.color = color;
     this.weight = weight;
     if (Animal_ES6.count >= 100) {
-      
       throw new Error('Cannot create more than 100 animals!');
     } else {
-      
       Animal_ES6.count++;
     }
   }

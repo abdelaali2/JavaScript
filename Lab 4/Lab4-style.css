@@ -1,0 +1,25 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.5)
+
+}
+
+a {
+    text-decoration: none;
+}
+
+h1{
+    font-size: 4em;
+    text-align: center;
+    color: transparent;
+    text-shadow: -1px 1px 2px white, 1px 1px 2px white, 1px -1px 0 white,-1px -1px 0 white;
+    width: 100%;
+    margin: 0 auto;
+}
+  
