@@ -16,25 +16,27 @@ let wantedTile;
 let clickedTile;
 let GameTimeLeft;
 let StartGameCounter;
-let isBoardDrawn = false;
+let isFirstTry = true;
 
 function EnvironmentSetting() {
+  console.log("called");
   isON = false;
   GameScore = 0;
-  GameTimeLeft=3;
+  GameTimeLeft = 30;
   StartGameCounter = 2;
   CounterDisplay.innerText = "00:00";
   CounterDisplay.style.paddingTop = "50px";
-  CounterDisplay.style.fontSize = "1em";
+  // CounterDisplay.style.fontSize = "1em";
   StartBtn.innerText = `START`;
   Score.innerHTML = GameScore;
   TileDisplay.innerText = "";
   drawBoard();
+  console.log("end");
 }
 
 function drawBoard() {
-  if (!isBoardDrawn) {
-    isBoardDrawn = true;
+  if (isFirstTry) {
+    isFirstTry = false;
     for (let i = 0; i < 8; i++) {
       const row = document.createElement("div");
       row.style.display = "flex";
@@ -48,10 +50,10 @@ function drawBoard() {
           square.style.backgroundColor = "white";
           square.style.opacity = "1";
         }
-        const labelLetter = `<span style= "text-shadow: -1px 1px 2px green, 1px 1px 2px green, 1px -1px 0 green, -1px -1px 0 white; color: transparent; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${
-          Letters[7 - (j + i)]
+        const labelLetter = `<span style= "text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 5px; margin-left: 5px; position: absolute; z-index: 2;">${
+          Letters[7 - (i + j)]
         }</span>`;
-        const labelNumber = `<span style= "text-shadow: -1px 1px 2px green, 1px 1px 2px green, 1px -1px 0 green, -1px -1px 0 white; color: transparent; font-size: 2em; margin-top: 40px; margin-left: 50px;  position: absolute; z-index: 2;">${Numbers[j]}</span>`;
+        const labelNumber = `<span style= "text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 white; color: white; font-size: 2em; margin-top: 40px; margin-left: 50px;  position: absolute; z-index: 2;">${Numbers[j]}</span>`;
         if (j === 0) {
           row.insertAdjacentHTML("afterbegin", labelLetter);
         }
@@ -66,7 +68,10 @@ function drawBoard() {
 }
 
 function StartGame() {
-  if (!isON) {
+  console.log("start game is called");
+  if (isON === false) {
+    console.log("start game is called inside IF condition");
+
     let StartGameTimer = setInterval(countdown, 1000);
     function countdown() {
       if (StartGameCounter == -1) {
@@ -90,14 +95,15 @@ function GameTime() {
 
   function countdown() {
     if (GameTimeLeft == 0) {
-      EnvironmentSetting();
+      isON = false;
       clearTimeout(timerId);
-      // playing();
+      playing();
     } else {
       CounterDisplay.innerText = `00:${GameTimeLeft}`;
       GameTimeLeft--;
     }
   }
+  console.log(`${isON} from countdown func`);
   playing();
 }
 
@@ -111,24 +117,28 @@ function TileGenerator() {
 
 function playing() {
   if (isON) {
-    ChessBoard.addEventListener("click", TileListening,true);
+    console.log("inside playing func");
+    console.log(`${isON} from playing func`);
+    ChessBoard.addEventListener("click", TileListening);
   } else {
     console.log(isON);
     console.log(`we'll remove the listener`);
-    ChessBoard.removeEventListener("click", TileListening,true);
+    ChessBoard.removeEventListener("click", TileListening);
+    EnvironmentSetting();
   }
+
   function TileListening(event) {
-    clickedTile = event.target.id;
-    console.log(wantedTile);
-    console.log(clickedTile);
-    if (wantedTile === clickedTile) {
-      GameScore++;
-      ScoreFigure.innerHTML += TickMark;
-      Score.innerHTML = GameScore;
-      wantedTile = TileGenerator();
-    } else {
-      ScoreFigure.innerHTML += XMark;
-      wantedTile = TileGenerator();
+    if (isON == true) {
+      clickedTile = event.target.id;
+      if (wantedTile === clickedTile) {
+        GameScore++;
+        Score.innerHTML = GameScore;
+        ScoreFigure.innerHTML += TickMark;
+        wantedTile = TileGenerator();
+      } else {
+        ScoreFigure.innerHTML += XMark;
+        wantedTile = TileGenerator();
+      }
     }
   }
 }
