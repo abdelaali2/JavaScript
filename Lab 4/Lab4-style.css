@@ -9,6 +9,8 @@
 body {
   background-image: linear-gradient(90deg, #ffdee9 0%, #b5fffc 100%);
   background-size: 100% 100%;
+  min-width: 100%;
+  min-height: 100vh;
 }
 
 h1 {
@@ -57,10 +59,12 @@ h1 {
 #StartBtn {
   text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black,
     -1px -1px 0 white;
-  width: 155px;
-  height: 155px;
+  min-width: 155px;
+  min-height: 155px;
+  max-width: 155px;
+  max-height: 155px;
   vertical-align: middle;
-  padding-top: 0.25em;
+  /* padding-top: 0.25em; */
   padding-left: 0.02em;
   border-radius: 100%;
   font-weight: 650;
@@ -85,10 +89,12 @@ h1 {
 #TileDisplay {
   text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black,
     -1px -1px 0 white;
-  width: 155px;
-  height: 155px;
+  min-width: 155px;
+  min-height: 155px;
+  max-width: 155px;
+  max-height: 155px;
   margin-left: 10px;
-  padding-top: 0.25em;
+  padding-top: 1em;
   padding-left: 0.02em;
   border-radius: 100%;
   font-size: 3em;
@@ -111,8 +117,10 @@ h1 {
 #CounterDisplay {
   text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black,
     -1px -1px 0 white;
-  width: 155px;
-  height: 155px;
+  min-width: 155px;
+  min-height: 155px;
+  max-width: 155px;
+  max-height: 155px;
   vertical-align: middle;
   padding-top: 0.25em;
   padding-left: 0.02em;
@@ -126,8 +134,10 @@ h1 {
 #Score {
   text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black,
     -1px -1px 0 white;
-  width: 155px;
-  height: 155px;
+  min-width: 155px;
+  min-height: 155px;
+  max-width: 155px;
+  max-height: 155px;
   margin-left: 10px;
   vertical-align: middle;
   padding-top: 0.5em;
@@ -136,16 +146,10 @@ h1 {
   font-size: 1.5em;
   font-weight: 650;
   transition: 0.5s;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: 0.5s;
 }
-
-/* #Score::after{
-  background-image: url(./media/chess1.png);
-  background-repeat: no-repeat;
-  background-attachment: local;
-  background-size: 50% 50%;
-} */
-
 
 .ScoreFigureArea {
   display: flex;
@@ -159,23 +163,26 @@ h1 {
 #PawnImage {
   width: 30%;
   height: auto;
+  margin-right: 5em;
+  margin-top: 2em;
+}
+
+.animated{
   animation: rotation 30s infinite linear;
 }
 
 @keyframes rotation {
   from {
     transform: rotate(0deg);
-    /* transform: scale(1.25); */
   }
   to {
     transform: rotate(359deg);
-    /* transform: scale(1.25); */
   }
 }
 
 #ScoreFigure {
-  font-size: 2em;
-  width: 80%;
+  font-size: 3em;
+  width: 70%;
   height: 3rem;
   overflow-wrap: break-word;
 }
